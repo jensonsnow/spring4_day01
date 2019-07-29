@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 
+	<bean id="userDao" class="com.itheima.spring.demo1.UserDaoImpl"> 
+	<property 
+		name="name" value="aaa11111"></property> 
+	</bean> 
+	<bean id="customerDao" class="com.itheima.spring.demo2.CustomerDaoImpl" 
+		init-method="setup" destroy-method="destory"> 
+	</bean> 
+		
+		
+	-->
+
+
+
+	<!-- 属性注入的方式 -->
+	<bean id="car" class="com.itheima.spring.demo4.Car">
+		<constructor-arg name="name" value="宝马"></constructor-arg>
+		<constructor-arg name="price" value="800000"></constructor-arg>
+	</bean>
+
+	<!-- set的方式 
+	<bean id="car2" class="com.itheima.spring.demo4.Car2">
+		<property name="name" value="奔驰"></property>
+		<property name="price" value="1000000"></property>
+	</bean>
+	-->
+	
+	<!-- set方法注入对象类型的方式 -->
+ 	<!-- <bean id="employee" class="com.itheima.spring.demo4.Employee">
+ 		property  中的value  设置普通类型的属性        ref 设置其他类型的ID  或 name
+		<property name="name" value="张三"></property>
+		<property name="car2" ref="car2"></property>
+	</bean> -->
+	
+	
+	<!-- p名称空间的方式  -->
+	<!-- <bean id ="car2" class="com.itheima.spring.demo4.Car2" p:name="奇瑞Q" p:price="30000"></bean>
+	<bean id ="employee" class="com.itheima.spring.demo4.Employee" p:name="大卫" p:car2-ref="car2"></bean>
+	 -->
+	
+	
+	<!-- SpEl属性注入的方式  -->
+	 <bean id ="car2" class="com.itheima.spring.demo4.Car2">
+	 	<property name="name" value="#{'三轮'}"></property>
+		<property name="price" value="#{3000}"></property>
+	 </bean>
+	
+	<bean id ="employee" class="com.itheima.spring.demo4.Employee" >
+	 	<property name="name" value="#{'海蜇'}"></property>
+		<property name="car2" value="#{car2}"></property>
+	 </bean>
+	
+	
+	 <import resource="/com/itheima/spring/demo5/ApplicationContext_collection.xml"/>
+</beans>
